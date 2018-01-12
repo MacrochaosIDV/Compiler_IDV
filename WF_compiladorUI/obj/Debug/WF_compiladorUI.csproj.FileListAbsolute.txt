@@ -1,0 +1,9 @@
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\bin\Debug\WF_compiladorUI.exe.config
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\bin\Debug\WF_compiladorUI.exe
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\bin\Debug\WF_compiladorUI.pdb
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\obj\Debug\WF_compiladorUI.csprojResolveAssemblyReference.cache
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\obj\Debug\WF_compiladorUI.Main_box.resources
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\obj\Debug\WF_compiladorUI.Properties.Resources.resources
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\obj\Debug\WF_compiladorUI.csproj.GenerateResource.Cache
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\obj\Debug\WF_compiladorUI.exe
+C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\WF_compiladorUI\obj\Debug\WF_compiladorUI.pdb
