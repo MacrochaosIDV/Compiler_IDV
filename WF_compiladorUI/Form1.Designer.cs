@@ -38,8 +38,10 @@
             this.saveas_event_click = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.complie_event_click = new System.Windows.Forms.ToolStripMenuItem();
+            this.lex_out_box = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +53,7 @@
             this.code_box.Multiline = true;
             this.code_box.Name = "code_box";
             this.code_box.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.code_box.Size = new System.Drawing.Size(1133, 469);
+            this.code_box.Size = new System.Drawing.Size(1133, 366);
             this.code_box.TabIndex = 0;
             // 
             // err_box
@@ -59,10 +61,11 @@
             this.err_box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.err_box.Font = new System.Drawing.Font("Wingdings", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.err_box.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.err_box.Location = new System.Drawing.Point(12, 542);
             this.err_box.Multiline = true;
             this.err_box.Name = "err_box";
+            this.err_box.ReadOnly = true;
             this.err_box.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.err_box.Size = new System.Drawing.Size(1133, 97);
             this.err_box.TabIndex = 1;
@@ -72,6 +75,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
             this.compileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -95,61 +99,83 @@
             // new_event_click
             // 
             this.new_event_click.Name = "new_event_click";
-            this.new_event_click.Size = new System.Drawing.Size(181, 26);
+            this.new_event_click.Size = new System.Drawing.Size(142, 26);
             this.new_event_click.Text = "&New";
             this.new_event_click.Click += new System.EventHandler(this.new_event_click_Click);
             // 
             // open_event_click
             // 
             this.open_event_click.Name = "open_event_click";
-            this.open_event_click.Size = new System.Drawing.Size(181, 26);
+            this.open_event_click.Size = new System.Drawing.Size(142, 26);
             this.open_event_click.Text = "&Open";
             this.open_event_click.Click += new System.EventHandler(this.open_event_click_Click);
             // 
             // save_event_click
             // 
             this.save_event_click.Name = "save_event_click";
-            this.save_event_click.Size = new System.Drawing.Size(181, 26);
+            this.save_event_click.Size = new System.Drawing.Size(142, 26);
             this.save_event_click.Text = "&Save";
             this.save_event_click.Click += new System.EventHandler(this.save_event_click_Click);
             // 
             // saveas_event_click
             // 
             this.saveas_event_click.Name = "saveas_event_click";
-            this.saveas_event_click.Size = new System.Drawing.Size(181, 26);
+            this.saveas_event_click.Size = new System.Drawing.Size(142, 26);
             this.saveas_event_click.Text = "Save as...";
             this.saveas_event_click.Click += new System.EventHandler(this.saveas_event_click_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(139, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
             this.exitToolStripMenuItem.Text = "&Exit";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
+            this.editToolStripMenuItem.Text = "Edit";
             // 
             // compileToolStripMenuItem
             // 
             this.compileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.compileToolStripMenuItem1});
+            this.complie_event_click});
             this.compileToolStripMenuItem.Name = "compileToolStripMenuItem";
             this.compileToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.compileToolStripMenuItem.Text = "Compile";
             // 
-            // compileToolStripMenuItem1
+            // complie_event_click
             // 
-            this.compileToolStripMenuItem1.Name = "compileToolStripMenuItem1";
-            this.compileToolStripMenuItem1.Size = new System.Drawing.Size(140, 26);
-            this.compileToolStripMenuItem1.Text = "&Compile";
+            this.complie_event_click.Name = "complie_event_click";
+            this.complie_event_click.Size = new System.Drawing.Size(140, 26);
+            this.complie_event_click.Text = "&Compile";
+            this.complie_event_click.Click += new System.EventHandler(this.complie_event_click_Click);
+            // 
+            // lex_out_box
+            // 
+            this.lex_out_box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lex_out_box.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lex_out_box.Location = new System.Drawing.Point(12, 439);
+            this.lex_out_box.Multiline = true;
+            this.lex_out_box.Name = "lex_out_box";
+            this.lex_out_box.ReadOnly = true;
+            this.lex_out_box.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.lex_out_box.Size = new System.Drawing.Size(1133, 97);
+            this.lex_out_box.TabIndex = 3;
             // 
             // Main_box
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1157, 651);
+            this.Controls.Add(this.lex_out_box);
             this.Controls.Add(this.err_box);
             this.Controls.Add(this.code_box);
             this.Controls.Add(this.menuStrip1);
@@ -177,7 +203,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem compileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem complie_event_click;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.TextBox lex_out_box;
     }
 }
 

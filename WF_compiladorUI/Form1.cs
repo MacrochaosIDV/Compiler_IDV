@@ -8,18 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+//using Compiler_code_logic_thing
 
 namespace WF_compiladorUI
 {
     public partial class Main_box : Form
     {
         private string currentFilename;
+        Compiler_code_logic_thing.Manager compiler;
+        
 
         public Main_box()
         {
             InitializeComponent();
 
             currentFilename = "";
+            compiler = new Compiler_code_logic_thing.Manager();
         }
 
         private void saveCodeFast() {
@@ -106,6 +110,14 @@ namespace WF_compiladorUI
                 inWriter.Close();
                 code_box.Text = contents;
             }
+        }
+
+        private void complie_event_click_Click(object sender, EventArgs e)
+        {
+            string[] details = compiler.compile(code_box.Text);
+            err_box.Lines = details;
+            string[] tokens = compiler.getAllTokens();
+            lex_out_box.Lines = tokens;
         }
     }
 }

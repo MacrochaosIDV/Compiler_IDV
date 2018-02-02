@@ -1,0 +1,46 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly Compiler_code_logic_thing, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class Compiler_code_logic_thing.Error_Module: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    System.String[] Errors 'get ' : 
+    Int32 MaxErrors 'get ' : 
+    Int32 NumErrors 'get ' : 
+  Methods:
+    addError(ERROR_PHASE, Int32, String, String): PrivateScope, Public, HideBySig
+    clearErrors(): PrivateScope, Public, HideBySig
+    get_NumErrors(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxErrors(): PrivateScope, Public, HideBySig, SpecialName
+    get_Errors(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct Compiler_code_logic_thing.Lex_analizer: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+Class Compiler_code_logic_thing.Manager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    GetCompilationDetails(): PrivateScope, Public, HideBySig
+    compile(String): PrivateScope, Public, HideBySig
+    getAllTokens(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct Compiler_code_logic_thing.ERROR_PHASE: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Compiler_code_logic_thing.ERROR_PHASE GLOBAL = 0 : Public, Static, Literal, HasDefault
+    Compiler_code_logic_thing.ERROR_PHASE LEX_ANALYZER = 1 : Public, Static, Literal, HasDefault
+    Compiler_code_logic_thing.ERROR_PHASE SYN_ANALYZER = 2 : Public, Static, Literal, HasDefault
+    Compiler_code_logic_thing.ERROR_PHASE SEM_ANALYZER = 3 : Public, Static, Literal, HasDefault
+    Compiler_code_logic_thing.ERROR_PHASE CODE_GENERATION = 4 : Public, Static, Literal, HasDefault

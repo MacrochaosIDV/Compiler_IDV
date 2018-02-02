@@ -1,0 +1,11 @@
+zzvar a,b,c123 :int;
+
+main)(
+{
+   var b: float   ;
+   var c =9.5;
+}
+
+aaa
+bbb
+99
