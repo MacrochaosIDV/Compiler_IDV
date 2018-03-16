@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="SyntxClasses">
+      <UniqueIdentifier>{e356aa3a-3625-4e40-8f39-c6cfed3cd830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SyntxClasses\h">
+      <UniqueIdentifier>{5a5be724-f8db-42c8-a258-bf1667d81836}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SyntxClasses\cpp">
+      <UniqueIdentifier>{f53876e4-10dc-4f6e-ba4d-4335c27fe120}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Compiler_code_logic_thing.h">
@@ -33,6 +42,15 @@
     <ClInclude Include="Token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Syntax_analizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxStateM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Compiler_code_logic_thing.cpp">
@@ -51,6 +69,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Token.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Syntax_analizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxStateM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

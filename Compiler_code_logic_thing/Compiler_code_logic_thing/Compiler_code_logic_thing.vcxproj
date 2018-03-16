@@ -137,6 +137,9 @@
     <ClInclude Include="Lex_analizer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="SymbolTable.h" />
+    <ClInclude Include="SyntaxStateM.h" />
+    <ClInclude Include="Syntax_analizer.h" />
     <ClInclude Include="Token.h" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +153,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SymbolTable.cpp" />
+    <ClCompile Include="SyntaxStateM.cpp" />
+    <ClCompile Include="Syntax_analizer.cpp" />
     <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -12,32 +12,32 @@ using namespace std;
 
 enum LEX_STATE {
 	S_START = 0,
-	S_PARSING_ID,				  //							 // ----- Stg 1 done ----- //
-	S_PARSING_INT,				  //							 // ----- Stg 1 done ----- //
-	S_PARSING_FLOAT,			  //							 // ----- Stg 1 done ----- //
-	S_PARSING_STRING,			  //							 // ----- Stg 1 done ----- //
-	S_PARSING_LESSTHAN,			  // Relational ope				 // ----- Stg 1 done ----- //
-	S_PARSING_LESSTHANOREQUAL,	  // Relational ope -> <=		 // ----- Stg 1 done ----- //
-	S_PARSING_GREATERTHAN,		  // Relational ope				 // ----- Stg 1 done ----- //
-	S_PARSING_GREATERTHANOREQUAL, // Relational ope -> >=		 // ----- Stg 1 done ----- //
-	S_PARSING_ASSIGN,			  // assing						 // ----- Stg 1 done ----- //
-	S_PARSING_EQUAL,			  // assing -> ==				 // ----- Stg 1 done ----- //
-	S_PARSING_NOTEQUAL,			  //  Logic ope -> !=			 // ----- Stg 1 done ----- //
-	S_PARSING_OPENPARENTHESIS,	  //							 // ----- Stg 1 done ----- //
-	S_PARSING_CLOSEPARENTHESIS,	  //							 // ----- Stg 1 done ----- //
-	S_PARSING_ARITHMETICOP,		  // Aritmetic ope				 // ----- Stg 1 done ----- //
-	S_PARSING_LOGICAL_OP_AND,	  // Logic ope					 // ----- Stg 1 done ----- //
-	S_PARSING_LOGICAL_OP_OR,	  // Logic ope					 // ----- Stg 1 done ----- //
-	S_PARSING_LOGICAL_OP_NOT,	  // Logic ope					 // ----- Stg 1 done ----- //
-	S_PARSING_OPENBRACKET,		  //							 // ----- Stg 1 done ----- //
-	S_PARSING_CLOSEBRACKET,		  //							 // ----- Stg 1 done ----- //
-	S_PARSING_OPENCURLYBRACKET,   //							 // ----- Stg 1 done ----- //
-	S_PARSING_CLOSECURLYBRACKET,  //							 // ----- Stg 1 done ----- //
-	S_PARSING_SEMICOLON,		  // ; is semiclon				 // ----- Stg 1 done ----- //
-	S_PARSING_COMMA,			  //							 // ----- Stg 1 done ----- //
-	S_PARSING_COLON,			  // : is colon					 // ----- Stg 1 done ----- //
-	S_PARSING_COMMENT_START,	  // Aritmetic ope -> comment    // ----- Stg 1 done ----- //
-	S_PARSING_COMMENT_MIDDLE	  //							 // ----- Stg 1 done ----- //
+	S_PARSING_ID,				  //							 // ----- Stg 3 done ----- //
+	S_PARSING_INT,				  //							 // ----- Stg 3 done ----- //
+	S_PARSING_FLOAT,			  //							 // ----- Stg 3 done ----- //
+	S_PARSING_STRING,			  //							 // ----- Stg 3 done ----- // bugged
+	S_PARSING_LESSTHAN,			  // Relational ope				 // ----- Stg 3 done ----- //
+	S_PARSING_LESSTHANOREQUAL,	  // Relational ope -> <=		 // ----- Stg 3 done ----- //
+	S_PARSING_GREATERTHAN,		  // Relational ope				 // ----- Stg 3 done ----- //
+	S_PARSING_GREATERTHANOREQUAL, // Relational ope -> >=		 // ----- Stg 3 done ----- //
+	S_PARSING_ASSIGN,			  // assing						 // ----- Stg 3 done ----- //
+	S_PARSING_EQUAL,			  // assing -> ==				 // ----- Stg 3 done ----- //
+	S_PARSING_NOTEQUAL,			  //  Logic ope -> !=			 // ----- Stg 3 done ----- //
+	S_PARSING_OPENPARENTHESIS,	  //							 // ----- Stg 3 done ----- //
+	S_PARSING_CLOSEPARENTHESIS,	  //							 // ----- Stg 3 done ----- //
+	S_PARSING_ARITHMETICOP,		  // Aritmetic ope				 // ----- Stg 3 done ----- //
+	S_PARSING_LOGICAL_OP_AND,	  // Logic ope					 // ----- Stg 3 done ----- //
+	S_PARSING_LOGICAL_OP_OR,	  // Logic ope					 // ----- Stg 3 done ----- //
+	S_PARSING_LOGICAL_OP_NOT,	  // Logic ope					 // ----- Stg 3 done ----- //
+	S_PARSING_OPENBRACKET,		  //							 // ----- Stg 3 done ----- //
+	S_PARSING_CLOSEBRACKET,		  //							 // ----- Stg 3 done ----- //
+	S_PARSING_OPENCURLYBRACKET,   //							 // ----- Stg 3 done ----- //
+	S_PARSING_CLOSECURLYBRACKET,  //							 // ----- Stg 3 done ----- //
+	S_PARSING_SEMICOLON,		  // ; is semiclon				 // ----- Stg 3 done ----- //
+	S_PARSING_COMMA,			  //							 // ----- Stg 3 done ----- //
+	S_PARSING_COLON,			  // : is colon					 // ----- Stg 3 done ----- //
+	S_PARSING_COMMENT_START,	  // Aritmetic ope -> comment    // ----- Stg 3 done ----- //
+	S_PARSING_COMMENT_MIDDLE	  //							 // ----- Stg 3 done ----- //
 
 };
 
@@ -54,6 +54,8 @@ namespace Compiler_code_logic_thing {
 	public class Lex_analizer
 	{
 	private:
+		int currToken;
+		
 		bool m_Succeeded;											// PARSING SUCCEEDED?
 		LEX_STATE m_State;												// CURRENT STATE
 
@@ -63,6 +65,7 @@ namespace Compiler_code_logic_thing {
 		std::vector<Token *> m_Tokens;									// TOKENS
 
 		void addError(int lineNum, const char *desc, const char *line);	// ADD ERROR TO ERRORS MODULE
+		void addError(int lineNum, const char *desc, const char *line, const char *curr_char, std::string & lineBuffer);
 		void addToken(const char *lex, TOKEN_TYPE type, int lineNum);	// ADD TOKEN TO SYMBOLS TABLE AND TOKENS VECTOR
 		void clearTokens();												// FREE MEMORY AND CLEAR TOKENS VECTOR
 
@@ -93,6 +96,9 @@ namespace Compiler_code_logic_thing {
 		bool parse_Code(const char * src);
 		int GetNumTokens() const;
 		void GetTokens(std::vector<Token *> *allTokensVec) const;
+
+		const Token * getNextToken();
+		const Token * peekToken(int offset);
 		bool succeeded() const
 		{
 			return m_Succeeded;

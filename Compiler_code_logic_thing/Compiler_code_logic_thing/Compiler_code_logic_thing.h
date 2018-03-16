@@ -5,7 +5,9 @@
 #include<vector>
 #include"Lex_analizer.h"
 #include"Error_Module.h"
+#include"Syntax_analizer.h"
 #include"Token.h"
+#include"SymbolTable.h"
 
 //.h
 //lexic
@@ -24,6 +26,9 @@ namespace Compiler_code_logic_thing {
 
 		Lex_analizer* lex;
 		Error_Module ^ err;
+		Syntax_analizer * syntx;
+		SymbolTable * symtbl;
+
 
 		// TODO: Add your methods for this class here.
 	public:
@@ -31,9 +36,13 @@ namespace Compiler_code_logic_thing {
 		Manager() {
 			err = gcnew Error_Module();
 			lex = new Lex_analizer(err);
+			syntx = new Syntax_analizer(err, lex);
+			symtbl = new SymbolTable();
 		}
 		~Manager() {
+			delete err;
 			delete lex;
+			delete syntx;
 		}
 
 		cli::array<String^>^ GetCompilationDetails();

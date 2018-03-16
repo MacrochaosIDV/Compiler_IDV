@@ -11,7 +11,7 @@ cli::array<String^>^ Compiler_code_logic_thing::Manager::GetCompilationDetails()
 	cli::array<String^>^ CompilationDetails;
 	if (lex->succeeded()) {
 		CompilationDetails = gcnew cli::array<String^>(1);
-		CompilationDetails[0] = gcnew String("======== Compile succeded ========");
+		CompilationDetails[0] = gcnew String("====== Compile succeded ======");
 		return CompilationDetails;
 	}
 	else {
@@ -26,7 +26,7 @@ cli::array<String^>^ Compiler_code_logic_thing::Manager::GetCompilationDetails()
 		for (int i = 2; i < numErrorLines - 1; ++i) {
 			CompilationDetails[i] = allErrors[i - 2];
 		}
-		CompilationDetails[numErrorLines - 1] = String::Format("======== Compile: failed, {0} errors ========", err->Errors);
+		CompilationDetails[numErrorLines - 1] = String::Format("====== Compile: failed, {0} errors ======", err->Errors);
 		return CompilationDetails;
 	}
 }
@@ -45,20 +45,19 @@ cli::array<String^>^ Compiler_code_logic_thing::Manager::compile(String ^ src_tx
 	else {
 		if (!err) {
 			compilation_details = gcnew cli::array<String^>(1);
-			compilation_details[0] = gcnew String("======== Compiler: fatal internal error on error module ========");
+			compilation_details[0] = gcnew String("====== Compiler: fatal internal error on error module ======");
 			return compilation_details;
 		}
 		else if (lex == NULL) {
 			compilation_details = gcnew cli::array<String^>(1);
-			compilation_details[0] = gcnew String("======== Compiler: fatal internal error on Lexic analizer module ========");
+			compilation_details[0] = gcnew String("====== Compiler: fatal internal error on Lexic analizer module ======");
 			return compilation_details;
 		}
 	}
 	//======== Lexic analysis ========//
-	//lexAnalysis(src_txt);
 	lex->parse_Code((const char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(src_txt).ToPointer());
 	//======== Syntax analysis ========//
-	//TO DO
+	syntx->syntaxizeCode();
 
 	//======== Semantic analysis ========//
 	//TO DO

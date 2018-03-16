@@ -3,8 +3,7 @@
 
 
 namespace Compiler_code_logic_thing {
-	enum TOKEN_TYPE
-	{
+	enum TOKEN_TYPE {
 		UNDEFINED = 0,
 		ID,
 		INT,

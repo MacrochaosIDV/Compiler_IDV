@@ -34,8 +34,16 @@ bool Compiler_code_logic_thing::Error_Module::addError(ERROR_PHASE errorPhase, i
 		}
 
 		errorsArray->SetValue(System::String::Format("<{0}>: \t{1} \t\t{2} \t\t{3}", errorPhase.ToString(), lineNumber, errorDesc, errLine), numErrors);
-		numErrors++;
-
+		++numErrors;
+		if (errorPhase == ERROR_PHASE::LEX_ANALYZER) {
+			++numErr_Lex;
+		}
+		else if (errorPhase == ERROR_PHASE::SYNTX_ANALYZER) {
+			++numErr_Syntx;
+		}
+		else if (errorPhase == ERROR_PHASE::SEM_ANALYZER) {
+			++numErr_Sem;
+		}
 		return true;
 	}
 

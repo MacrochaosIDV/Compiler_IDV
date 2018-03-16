@@ -9,7 +9,7 @@ namespace Compiler_code_logic_thing {
 	{
 		GLOBAL,
 		LEX_ANALYZER,
-		SYN_ANALYZER,
+		SYNTX_ANALYZER,
 		SEM_ANALYZER,
 		CODE_GENERATION
 	};
@@ -20,6 +20,9 @@ namespace Compiler_code_logic_thing {
 	{
 	private:
 		int numErrors;
+		int numErr_Lex;
+		int numErr_Syntx;
+		int numErr_Sem;
 		cli::array<System::String ^> ^ errorsArray;
 
 	public:
@@ -36,6 +39,30 @@ namespace Compiler_code_logic_thing {
 			int get()
 			{
 				return numErrors;
+			}
+		}
+
+		property int LEX_NumErrors
+		{
+			int get()
+			{
+				return numErr_Lex;
+			}
+		}
+
+		property int SYNTX_NumErrors
+		{
+			int get()
+			{
+				return numErr_Syntx;
+			}
+		}
+
+		property int SEM_NumErrors
+		{
+			int get()
+			{
+				return numErr_Sem;
 			}
 		}
 

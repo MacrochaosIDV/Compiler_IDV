@@ -1,0 +1,7 @@
+﻿  Compiler_code_logic_thing.cpp
+  SyntaxStateM.cpp
+  Syntax_analizer.cpp
+  Generating Code...
+  AssemblyInfo.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  Compiler_code_logic_thing.vcxproj -> C:\Users\Usuario\Documents\Visual Studio 2015\Projects\Compiladores\Compiler_code_logic_thing\x64\Debug\Compiler_code_logic_thing.dll
+  Compiler_code_logic_thing.vcxproj -> C:\Users\Usuario\Documents\Visual Studio 2015\Projects\Compiladores\Compiler_code_logic_thing\x64\Debug\Compiler_code_logic_thing.pdb (Partial PDB)

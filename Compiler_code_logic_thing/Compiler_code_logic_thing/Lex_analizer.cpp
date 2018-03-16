@@ -34,11 +34,11 @@ Compiler_code_logic_thing::Lex_analizer::~Lex_analizer() {
 bool Lex_analizer::parse_Code(const char * src) {
 	int currentLineNum = 1;
 	int numCharsInLine = 0;
-	int firstLineComment = 0;
+	int floatDigitCount = 0;
 	const char * currentChar = src;
 	const char * currentLine = src;
 	std::string tokenBuffer;
-	std::string linrBufferString;
+	std::string lineBufferString;
 	std::string firstCommentLine;
 	char lexSrcEof = '\0'; //end of file
 	bool stringNotClosed = 0;
@@ -61,8 +61,9 @@ bool Lex_analizer::parse_Code(const char * src) {
 				++currentChar;
 			}
 			else if (*currentChar=='.') {
-				tokenBuffer.clear();
-				addError(currentLineNum, LEX_ERROR_INVALID_FLOAT, currentLine);
+				//tokenBuffer.clear();
+				addError(currentLineNum, LEX_ERROR_INVALID_FLOAT, currentLine, currentChar, lineBufferString);
+				//tokenBuffer.clear();
 				++currentChar;
 			}
 			else if (is_Alpha(currentChar) || *currentChar == '_') {
@@ -78,19 +79,17 @@ bool Lex_analizer::parse_Code(const char * src) {
 				++currentChar;
 			}
 			else if (is_StringLiteral(currentChar)) {
-				tokenBuffer.clear();
+				//tokenBuffer.clear();
 				//tokenBuffer.append(currentChar, 1);
 				m_State = S_PARSING_STRING;	////////// Go to Parsing String //////////
 				++currentChar;
 			}
 			else if (is_ArithmeticOpe(currentChar)) {
 				if (*currentChar == '/') {
-					if (*currentChar + 1 != lexSrcEof) {
-						if (*currentChar + 1 == '*') {
-							m_State = S_PARSING_COMMENT_START;	////////// Go to Parsing start of comment //////////
-							++currentChar;
-							++currentChar;
-						}
+					if ((*currentChar + 1 != lexSrcEof) && (*currentChar + 1 == '*')) {
+						m_State = S_PARSING_COMMENT_START;	////////// Go to Parsing start of comment //////////
+						++currentChar;
+						++currentChar;
 					}
 				}
 				tokenBuffer.clear();
@@ -99,7 +98,7 @@ bool Lex_analizer::parse_Code(const char * src) {
 				++currentChar;
 			}
 			else if (is_RelationalOpe(currentChar)) {
-				tokenBuffer.clear();
+				//tokenBuffer.clear();
 				if (*currentChar == '<') {
 					tokenBuffer.clear();
 					tokenBuffer.append(currentChar, 1);
@@ -256,28 +255,57 @@ bool Lex_analizer::parse_Code(const char * src) {
 				m_State = S_PARSING_FLOAT;
 			}
 			else {
-				addError(currentLineNum, LEX_ERROR_INVALID_CHARACTER, currentLine);
+				tokenBuffer.clear();
+				addError(currentLineNum, LEX_ERROR_INVALID_CHARACTER, currentLine, currentChar, lineBufferString);
 				m_State = S_START;
 			}
 			break;				///////////////////////////////////////////////////////
 		case S_PARSING_FLOAT:	//////////////////// Parsing float ////////////////////
 								///////////////////////////////////////////////////////
-			if (is_Digit(currentChar)) {
+			//must check that first char after . is digit
+			if (floatDigitCount == 0) {
+				if (!is_Digit(currentChar)) {
+					addError(currentLineNum, LEX_ERROR_INVALID_FLOAT, currentLine, currentChar, lineBufferString);
+					m_State = S_START;
+				}
+			}
+			//////////////
+			else if (is_Digit(currentChar)) {
 				tokenBuffer.append(currentChar, 1);
 				++currentChar;
-				if (*currentChar == lexSrcEof || is_Space(currentChar) || is_Separator(currentChar)) {
+				++floatDigitCount;
+				if (*currentChar == lexSrcEof || *currentChar == ' ' || *currentChar == '\t' || is_Separator(currentChar)) {
 					addToken(tokenBuffer.c_str(), TOKEN_TYPE::FLOAT, currentLineNum);
+					floatDigitCount = 0;
 					m_State = S_START;
 				}
 			}
 			else {
-				addError(currentLineNum, LEX_ERROR_INVALID_CHARACTER, currentLine);
+				tokenBuffer.clear();
+				addError(currentLineNum, LEX_ERROR_INVALID_FLOAT, currentLine, currentChar, lineBufferString);
+				floatDigitCount = 0; 
 				m_State = S_START;
 			}
 			break;				////////////////////////////////////////////////////////
 		case S_PARSING_STRING:	//////////////////// Parsing string ////////////////////
 								////////////////////////////////////////////////////////
-			if (is_StringLiteral(currentChar)) {
+			if (*currentChar == lexSrcEof || is_NewLine(currentChar)) {
+				addError(currentLineNum, LEX_ERROR_STRING_NOT_CLOSED, currentLine, currentChar, lineBufferString);
+				//tokenBuffer.clear();
+				++currentChar;
+				m_State = S_START;
+			}
+			else if (is_StringLiteral(currentChar)) {
+				addToken(tokenBuffer.c_str(), TOKEN_TYPE::STRING, currentLineNum);
+				++currentChar;
+				tokenBuffer.clear();
+				m_State = S_START;
+			}
+			else {
+				tokenBuffer.append(currentChar, 1);
+				++currentChar;
+			}
+			/*if (is_StringLiteral(currentChar)) {
 				addToken(tokenBuffer.c_str(), TOKEN_TYPE::STRING, currentLineNum);
 				m_State = S_START;
 			}
@@ -286,9 +314,9 @@ bool Lex_analizer::parse_Code(const char * src) {
 				++currentChar;
 			}
 			else {
-				addError(currentLineNum, LEX_ERROR_STRING_NOT_CLOSED, currentLine);
+				addError(currentLineNum, LEX_ERROR_STRING_NOT_CLOSED, currentLine, currentChar, lineBufferString);
 				m_State = S_START;
-			}
+			}*/
 			break;					///////////////////////////////////////////////////
 		case S_PARSING_LESSTHAN:	//////////////////// Parsing < ////////////////////
 									///////////////////////////////////////////////////
@@ -388,7 +416,8 @@ bool Lex_analizer::parse_Code(const char * src) {
 				m_State = S_START;
 			}
 			else {
-				addError(currentLineNum, LEX_ERROR_INVALID_LOGICAL_OP_AND, currentLine);
+				tokenBuffer.clear();
+				addError(currentLineNum, LEX_ERROR_INVALID_LOGICAL_OP_AND, currentLine, currentChar, lineBufferString);
 				m_State = S_START;
 			}
 			break;						////////////////////////////////////////////////////
@@ -400,7 +429,8 @@ bool Lex_analizer::parse_Code(const char * src) {
 				addToken(tokenBuffer.c_str(), TOKEN_TYPE::LOGICAL_OPE, currentLineNum);
 			}
 			else {
-				addError(currentLineNum, LEX_ERROR_INVALID_LOGICAL_OP_OR, currentLine);
+				tokenBuffer.clear();
+				addError(currentLineNum, LEX_ERROR_INVALID_LOGICAL_OP_OR, currentLine, currentChar, lineBufferString);
 				m_State = S_START;
 			}
 			break;						///////////////////////////////////////////////////
@@ -474,12 +504,14 @@ bool Lex_analizer::parse_Code(const char * src) {
 				}
 			}
 			else {
-				addError(currentLineNum, LEX_ERROR_COMMENT_NOT_CLOSED, currentLine);
+				tokenBuffer.clear();
+				addError(currentLineNum, LEX_ERROR_COMMENT_NOT_CLOSED, currentLine, currentChar, lineBufferString);
 				m_State = S_START;
 			}
 			break;
 		default:
-			addError(currentLineNum, LEX_ERROR_INVALID_STATE, currentLine);
+			tokenBuffer.clear();
+			addError(currentLineNum, LEX_ERROR_INVALID_STATE, currentLine, currentChar, lineBufferString);
 			break;
 		}
 	}
@@ -494,9 +526,40 @@ void Compiler_code_logic_thing::Lex_analizer::GetTokens(std::vector<Token*>* all
 	std::copy(m_Tokens.begin(), m_Tokens.end(), std::back_inserter(*allTokensVec));
 }
 
+const Token * Compiler_code_logic_thing::Lex_analizer::getNextToken() {
+	if (currToken < m_Tokens.size()) {
+		return m_Tokens[currToken++];
+	}
+	else if (currToken == 0) {
+		return m_Tokens[0];
+	}
+	else {
+		return nullptr;
+	}
+}
+
+const Token * Compiler_code_logic_thing::Lex_analizer::peekToken(int offset) {
+	if ((currToken + offset) < m_Tokens.size() && (currToken + offset >= 0)) {
+		return m_Tokens[currToken + offset];
+	}
+	else
+		return nullptr;
+}
+
 void Compiler_code_logic_thing::Lex_analizer::addError(int lineNum, const char * desc, const char * line) {
 	String ^ strDesc = gcnew String(desc);
 	String ^ strLine = gcnew String(line);
+	managedRef_errMod->addError(Compiler_code_logic_thing::ERROR_PHASE::LEX_ANALYZER, lineNum, strDesc, strLine);
+	m_Succeeded = false;
+}
+
+void Compiler_code_logic_thing::Lex_analizer::addError(int lineNum, const char *desc, const char *line, const char *curr_char, std::string & lineBuffer) {
+	int nCharsInLine = (curr_char - line) + 1;
+	lineBuffer.clear();
+	lineBuffer.append(line, nCharsInLine);
+	lineBuffer.append("<-<-<-<");
+	String ^ strDesc = gcnew String(desc);
+	String ^ strLine = gcnew String(lineBuffer.c_str());
 	managedRef_errMod->addError(Compiler_code_logic_thing::ERROR_PHASE::LEX_ANALYZER, lineNum, strDesc, strLine);
 	m_Succeeded = false;
 }
@@ -506,6 +569,7 @@ void Compiler_code_logic_thing::Lex_analizer::addToken(const char * lex, TOKEN_T
 }
 
 void Compiler_code_logic_thing::Lex_analizer::clearTokens() {
+	currToken = 0;
 	if (m_Tokens.size() > 0) {
 		for (int i = 0; i < (int)m_Tokens.size(); i++) {
 			if (m_Tokens[i] != NULL) {
