@@ -79,6 +79,40 @@ bool Compiler_code_logic_thing::SymbolTable::addSymbol(std::string symbol, Enum_
 
 	return 0;
 }
+bool Compiler_code_logic_thing::SymbolTable::getSymbolTypeBoolable(const Token * tok) {
+	TOKEN_TYPE TT = tok->GetType();
+	if (TT == LOGICAL_CONSTANT)
+		return true;
+	else if (TT == ID) {
+		auto it = m_Nodes.find(tok->GetLex());
+		if (it != m_Nodes.end()) {
+			Global_Node * g_node = it->second;
+			if (g_node != nullptr) {
+
+				if (g_node->getNodeClass() == GLOBAL_VAR || g_node->getNodeClass() == FUNC) {
+					string gNode_str = g_node->getType();
+					if (gNode_str == "bool") {
+						return true;
+					}
+				}
+				else if(g_node->getNodeClass() == PARAM || g_node->getNodeClass() == LOCAL_VAR) {
+					Enum_Node_Class nodeClass = g_node->getNodeClass();
+					Local_Node * l_node = g_node->getLocalNode();
+					while (l_node != nullptr) {
+						if (l_node->getNodeClass() == /*Enum_Node_Class*/nodeClass) {
+							string gNode_str = g_node->getType();
+							if (gNode_str == "bool") {
+								return true;
+							}
+						}
+						l_node->getNextNode();
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
 //////////////////////////////////  ^ Symbol Table ^ //////////////////////////////////
 //------------------------------------------------------------------------------------------------------------------
 //////////////////////////////////  v Local Node v //////////////////////////////////

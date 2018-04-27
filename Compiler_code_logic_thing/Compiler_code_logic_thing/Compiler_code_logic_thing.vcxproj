@@ -134,8 +134,11 @@
   <ItemGroup>
     <ClInclude Include="Compiler_code_logic_thing.h" />
     <ClInclude Include="Error_Module.h" />
+    <ClInclude Include="ExpLogNode.h" />
+    <ClInclude Include="ExpLogTree.h" />
     <ClInclude Include="Lex_analizer.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Semantic_analizer.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="SymbolTable.h" />
     <ClInclude Include="SyntaxStateM.h" />
@@ -146,7 +149,10 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Compiler_code_logic_thing.cpp" />
     <ClCompile Include="Error_Module.cpp" />
+    <ClCompile Include="ExpLogNode.cpp" />
+    <ClCompile Include="ExpLogTree.cpp" />
     <ClCompile Include="Lex_analizer.cpp" />
+    <ClCompile Include="Semantic_analizer.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

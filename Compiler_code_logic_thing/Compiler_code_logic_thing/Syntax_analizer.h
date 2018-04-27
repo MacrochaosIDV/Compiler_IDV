@@ -7,6 +7,7 @@
 #include <map>
 #include "SymbolTable.h"
 
+
 /*
 <variables>::= 'var' <grupo_var_id> ';' [<variables>]
 <grupo_var_id>::= <grupo_id>':'<tipo>
@@ -100,6 +101,7 @@ namespace Compiler_code_logic_thing {
 	//////////////////// ^ Errors defines ^ ////////////////////
 
 	class SyntaxStateM;
+	class Semantic_analizer;
 	class Syntax_analizer {
 	private:
 		
@@ -112,6 +114,7 @@ namespace Compiler_code_logic_thing {
 		msclr::gcroot<Error_Module ^> err;
 		SymbolTable * m_p_SymTbl;
 		SyntaxStateM * m_p_SyntxState;
+		Semantic_analizer * sem;
 		
 		void addError(int linenumber, const char *desc);
 		void addErrorExpexted(int n, char * e, char * f);
@@ -121,11 +124,14 @@ namespace Compiler_code_logic_thing {
 
 	public:
 		void reset();
+		std::map<string, vector<Token*>> logicExpresions;
+
+		//void notacion post fija
 		SyntaxStateM * getSyntxState(std::string str);
-		Syntax_analizer(Error_Module ^err, Lex_analizer * lexx);
+		Syntax_analizer(Error_Module ^err, Lex_analizer * lexx, Semantic_analizer * semm);
 		~Syntax_analizer();
 		bool syntaxizeCode();
-
+		Semantic_analizer* getSem();
 	};
 }
 

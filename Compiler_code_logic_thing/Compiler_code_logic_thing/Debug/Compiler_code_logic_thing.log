@@ -1,49 +1,50 @@
 ﻿  Compiler_code_logic_thing.cpp
 Compiler_code_logic_thing.cpp(85): warning C4018: '<': signed/unsigned mismatch
-  SymbolTable.cpp
+  ExpLogTree.cpp
+  Semantic_analizer.cpp
   SyntaxStateM.cpp
-SyntaxStateM.cpp(98): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(99): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(210): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(214): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(321): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(322): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(378): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(379): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(442): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(443): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(491): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(492): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(531): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(532): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(571): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(572): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(659): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(660): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(741): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(742): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(781): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(782): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(842): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(843): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(899): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(900): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(959): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(960): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1029): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1030): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1069): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1070): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1135): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1136): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1175): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1176): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1231): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1232): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1271): warning C4018: '<': signed/unsigned mismatch
-SyntaxStateM.cpp(1272): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(100): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(101): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(213): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(217): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(325): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(326): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(383): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(384): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(448): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(449): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(498): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(499): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(539): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(540): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(580): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(581): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(669): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(670): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(752): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(753): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(792): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(793): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(854): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(855): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(912): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(913): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(973): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(974): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1044): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1045): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1085): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1086): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1290): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1291): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1331): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1332): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1388): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1389): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1429): warning C4018: '<': signed/unsigned mismatch
+SyntaxStateM.cpp(1430): warning C4018: '<': signed/unsigned mismatch
   Syntax_analizer.cpp
   Generating Code...
   AssemblyInfo.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
-  Compiler_code_logic_thing.vcxproj -> C:\Users\Usuario\Documents\Visual Studio 2015\Projects\Compiladores\Compiler_code_logic_thing\Debug\Compiler_code_logic_thing.dll
-  Compiler_code_logic_thing.vcxproj -> C:\Users\Usuario\Documents\Visual Studio 2015\Projects\Compiladores\Compiler_code_logic_thing\Debug\Compiler_code_logic_thing.pdb (Partial PDB)
+  Compiler_code_logic_thing.vcxproj -> C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\Compiler_code_logic_thing\Debug\Compiler_code_logic_thing.dll
+  Compiler_code_logic_thing.vcxproj -> C:\Users\Usuario\Documents\Visual Studio 2015\Projects\WF_compiladorUI\Compiler_code_logic_thing\Debug\Compiler_code_logic_thing.pdb (Partial PDB)

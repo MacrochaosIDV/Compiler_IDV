@@ -49,6 +49,7 @@
             // 
             this.code_box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.code_box.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.code_box.Location = new System.Drawing.Point(12, 67);
             this.code_box.Multiline = true;
             this.code_box.Name = "code_box";

@@ -1,43 +1,45 @@
 #include "stdafx.h"
 #include "Syntax_analizer.h"
+#include "Semantic_analizer.h"
 
 Compiler_code_logic_thing::Syntax_analizer::~Syntax_analizer() {
 	
 }
 
-Compiler_code_logic_thing::Syntax_analizer::Syntax_analizer(Error_Module ^errr, Lex_analizer * lexx) {
+Compiler_code_logic_thing::Syntax_analizer::Syntax_analizer(Error_Module ^errr, Lex_analizer * lexx, Semantic_analizer * semm) {
 	err =  errr;
 	lex = lexx;
-	m_Syntx_State_Map.insert(std::make_pair("program", new SyntxProg(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("main", new SyntxMain(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("var", new SyntxVar(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("procedure", new SyntxProc(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("funtion", new SyntxFunc(lex, this)));
+	sem = semm;
+	m_Syntx_State_Map.insert(std::make_pair("program", new SyntxProg(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("main", new SyntxMain(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("var", new SyntxVar(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("procedure", new SyntxProc(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("funtion", new SyntxFunc(lex, this, m_p_SymTbl)));
 
-	m_Syntx_State_Map.insert(std::make_pair("int", new SyntxType(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("float", new SyntxType(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("string", new SyntxType(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("bool", new SyntxType(lex, this)));
+	//m_Syntx_State_Map.insert(std::make_pair("int", new SyntxType(lex, this, m_p_SymTbl)));
+	//m_Syntx_State_Map.insert(std::make_pair("float", new SyntxType(lex, this, m_p_SymTbl)));
+	//m_Syntx_State_Map.insert(std::make_pair("string", new SyntxType(lex, this, m_p_SymTbl)));
+	//m_Syntx_State_Map.insert(std::make_pair("bool", new SyntxType(lex, this, m_p_SymTbl)));
 
-	m_Syntx_State_Map.insert(std::make_pair("inc", new SyntxIncDec(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("dec", new SyntxIncDec(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("=", new SyntxAssing(lex, this)));
+	m_Syntx_State_Map.insert(std::make_pair("inc", new SyntxIncDec(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("dec", new SyntxIncDec(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("=", new SyntxAssing(lex, this, m_p_SymTbl)));
 
-	m_Syntx_State_Map.insert(std::make_pair("[", new SyntxDimension(lex, this)));
+	m_Syntx_State_Map.insert(std::make_pair("[", new SyntxDimension(lex, this, m_p_SymTbl)));
 
-	m_Syntx_State_Map.insert(std::make_pair("switch", new SyntxSwitch(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("while", new SyntxWhile(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("for", new SyntxFor(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("if", new SyntxIf(lex, this)));
+	m_Syntx_State_Map.insert(std::make_pair("switch", new SyntxSwitch(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("while", new SyntxWhile(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("for", new SyntxFor(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("if", new SyntxIf(lex, this, m_p_SymTbl)));
 
-	m_Syntx_State_Map.insert(std::make_pair("return", new SyntxReturn(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("read", new SyntxRead(lex, this)));
-	m_Syntx_State_Map.insert(std::make_pair("print", new SyntxPrint(lex, this)));
+	m_Syntx_State_Map.insert(std::make_pair("return", new SyntxReturn(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("read", new SyntxRead(lex, this, m_p_SymTbl)));
+	m_Syntx_State_Map.insert(std::make_pair("print", new SyntxPrint(lex, this, m_p_SymTbl)));
 
 	//m_Syntx_State_Map.insert(std::make_pair("", new SyntxParam(lex, this)));	//first value is wat?
 	//m_Syntx_State_Map.insert(std::make_pair("", new SyntxExp_L(lex, this)));	//how do I expresion?
 	//m_Syntx_State_Map.insert(std::make_pair("", new SyntxProcFunc_call(lex, this)));	//
-	m_Syntx_State_Map.insert(std::make_pair("{", new SyntxBlock_or_BlockSwitch(lex, this)));	//
+	m_Syntx_State_Map.insert(std::make_pair("{", new SyntxBlock_or_BlockSwitch(lex, this, m_p_SymTbl)));	//
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,6 +160,9 @@ bool Compiler_code_logic_thing::Syntax_analizer::syntaxizeCode() {
 		return true;
 	else
 		return false;
+}
+Semantic_analizer * Compiler_code_logic_thing::Syntax_analizer::getSem(){
+	return sem;
 }
 void Compiler_code_logic_thing::Syntax_analizer::reset() {
 

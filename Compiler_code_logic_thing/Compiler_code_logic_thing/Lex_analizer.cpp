@@ -254,6 +254,11 @@ bool Lex_analizer::parse_Code(const char * src) {
 				++currentChar;
 				m_State = S_PARSING_FLOAT;
 			}
+			else if (is_Space(currentChar) || is_Separator(currentChar)) {
+				addToken(tokenBuffer.c_str(), TOKEN_TYPE::INT, currentLineNum);
+				tokenBuffer.clear();
+				m_State = S_START;
+			}
 			else {
 				tokenBuffer.clear();
 				addError(currentLineNum, LEX_ERROR_INVALID_CHARACTER, currentLine, currentChar, lineBufferString);

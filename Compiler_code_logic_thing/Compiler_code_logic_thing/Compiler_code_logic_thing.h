@@ -1,13 +1,14 @@
 // Compiler_code_logic_thing.h
 
 #pragma once
-#include<string>
-#include<vector>
-#include"Lex_analizer.h"
-#include"Error_Module.h"
-#include"Syntax_analizer.h"
-#include"Token.h"
-#include"SymbolTable.h"
+#include <string>
+#include <vector>
+#include "Lex_analizer.h"
+#include "Error_Module.h"
+#include "Syntax_analizer.h"
+#include "Token.h"
+#include "SymbolTable.h"
+#include "Semantic_analizer.h"
 
 //.h
 //lexic
@@ -28,7 +29,7 @@ namespace Compiler_code_logic_thing {
 		Error_Module ^ err;
 		Syntax_analizer * syntx;
 		SymbolTable * symtbl;
-
+		Semantic_analizer * sem;
 
 		// TODO: Add your methods for this class here.
 	public:
@@ -36,8 +37,10 @@ namespace Compiler_code_logic_thing {
 		Manager() {
 			err = gcnew Error_Module();
 			lex = new Lex_analizer(err);
-			syntx = new Syntax_analizer(err, lex);
+			sem = new Semantic_analizer();
+			syntx = new Syntax_analizer(err, lex, sem);
 			symtbl = new SymbolTable();
+			
 		}
 		~Manager() {
 			delete err;

@@ -1,7 +1,10 @@
 #pragma once
 #include <map>
 #include <string>
+#include "Token.h"
 #include "Error_Module.h"
+using std::string;
+using Compiler_code_logic_thing::TOKEN_TYPE;
 namespace Compiler_code_logic_thing {
 	enum Enum_Node_Class {
 		UNDEF = 0,
@@ -24,21 +27,22 @@ namespace Compiler_code_logic_thing {
 	//////////////////////////////////  v Local Node v //////////////////////////////////
 	class Local_Node {
 	public:
-		Local_Node(std::string n_ProcFunc, Enum_Node_Class nodeClass,
-			int dimen, std::string type, Local_Node * n_next);
+		Local_Node(string n_ProcFunc, Enum_Node_Class nodeClass,
+			int dimen, string type, Local_Node * n_next);
 		~Local_Node();
 		void setNextNode(Local_Node * n_local);
 		//////////////// v Gets v ////////////////
 		Enum_Node_Class getNodeClass() { return m_nodeClass; }
-		std::string getVarContext() { return m_n_ProcFunc; }
+		string getVarContext() { return m_n_ProcFunc; }
 		Local_Node * getNextNode() { return m_nextNode; }
+		string getType() { return m_type; }
 		//////////////// ^ Gets ^ ////////////////
 	private:
-		std::string m_n_ProcFunc;
+		string m_n_ProcFunc;
 		Enum_Node_Class m_nodeClass;
 		Node_Val * m_N_Val;
 		int m_dimen;
-		std::string m_type;
+		string m_type;
 		Local_Node * m_nextNode;
 	};
 	//////////////////////////////////  ^ Local Node ^ //////////////////////////////////
@@ -46,20 +50,21 @@ namespace Compiler_code_logic_thing {
 	//////////////////////////////////  v Global Node v //////////////////////////////////
 	class Global_Node {
 	public:
-		Global_Node(std::string symbol, Enum_Node_Class nodeClass, int dimen, std::string type);
+		Global_Node(string symbol, Enum_Node_Class nodeClass, int dimen, string type);
 		~Global_Node();
 		void setLocalNode(Local_Node * n_local);
 		//////////////// v Gets v ////////////////
 		Enum_Node_Class getNodeClass() { return m_nodeClass; }
-		std::string getNodeSymbol() { return m_symbol; }
+		string getNodeSymbol() { return m_symbol; }
 		Local_Node * const getLocalNode() { return m_n_local; }
+		string getType() { return m_type; }
 		//////////////// ^ Gets ^ ////////////////
 	private:
-		std::string m_symbol;
+		string m_symbol;
 		Enum_Node_Class m_nodeClass;
 		Node_Val * m_N_Val;
 		int m_dimen;
-		std::string m_type;
+		string m_type;
 		Local_Node * m_n_local;
 	};
 	//////////////////////////////////  ^ Global Node ^ //////////////////////////////////
@@ -69,11 +74,11 @@ namespace Compiler_code_logic_thing {
 	public:
 		SymbolTable();
 		~SymbolTable();
-		bool symbolExists(std::string symbol, Enum_Node_Class nodeClass, std::string n_ProcFunc);
-		bool addSymbol(std::string symbol, Enum_Node_Class nodeClass, int dimen, std::string type, std::string n_ProcFunc);
-
+		bool symbolExists(string symbol, Enum_Node_Class nodeClass, string n_ProcFunc);
+		bool addSymbol(string symbol, Enum_Node_Class nodeClass, int dimen, string type, string n_ProcFunc);
+		bool getSymbolTypeBoolable(const Token * tok);
 	private:
-		std::map<std::string, Global_Node *> m_Nodes;
+		std::map<string, Global_Node *> m_Nodes;
 	};
 	//////////////////////////////////  ^ Symbol Table ^ //////////////////////////////////
 }

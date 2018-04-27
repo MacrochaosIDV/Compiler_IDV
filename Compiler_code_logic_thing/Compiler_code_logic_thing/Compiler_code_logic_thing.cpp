@@ -60,7 +60,7 @@ cli::array<String^>^ Compiler_code_logic_thing::Manager::compile(String ^ src_tx
 	syntx->syntaxizeCode();
 
 	//======== Semantic analysis ========//
-	//TO DO
+	sem->evalExprns();
 
 	//compilation_details = gcnew cli::array<String^>(1);
 	//compilation_details[0] = gcnew String("Compiler start");
